@@ -30,22 +30,24 @@ We have successfully implemented real-time cloud synchronization and multi-provi
   - `history_manager.py`: Local JSON persistence.
   - `handover_manager.py`: Dev context generator.
 
-## ⚙️ Configuration
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. Configure `.env`:
-   ```env
-   LLM_PROVIDER=gemini # or ollama, mock
-   GEMINI_API_KEY=your_key
-   SUPABASE_URL=your_url
-   SUPABASE_KEY=your_anon_key
-   ```
-3. Run the assistant:
-   ```bash
-   python main.py
-   ```
+## 🚀 Getting Started
+
+To initialize the system on a new environment, simply run the interactive setup script:
+
+```bash
+python setup.py
+```
+
+This script will:
+1.  **Install Dependencies**: Automatically verify and install all requirements.
+2.  **Interactive Config**: Guide you through setting up Gemini and Supabase keys.
+3.  **Security**: Securely generate your local `.env` file (ignored by Git).
+4.  **Ready to Go**: Provide instructions for your first system boot.
+
+Once initialized, start the assistant:
+```bash
+python main.py
+```
 
 ---
 *Created with ❤️ by Antigravity AI*

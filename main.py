@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import uuid
 import keyboard
 from rich.console import Console
 from rich.panel import Panel
