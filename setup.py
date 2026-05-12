@@ -49,11 +49,23 @@ def run_setup():
 
     # 3. Interactive Configuration
     console.print("\n[bold yellow]--- CORE CONFIGURATION ---[/bold yellow]")
-    console.print("[italic white]Need your keys? Click the links below:[/italic white]")
-    console.print("  - Gemini API: [link=https://aistudio.google.com/app/apikey]https://aistudio.google.com/app/apikey[/link]")
-    console.print("  - Supabase: [link=https://supabase.com/dashboard/project/_/settings/api]https://supabase.com/dashboard/project/_/settings/api[/link]\n")
     
-    gemini_key = Prompt.ask("[cyan]Enter Gemini API Key[/cyan]", password=True)
+    provider = Prompt.ask("[cyan]Choose LLM Provider[/cyan]", choices=["ollama", "gemini", "mock"], default="ollama")
+    
+    gemini_key = "YOUR_GEMINI_API_KEY_HERE"
+    ollama_url = "http://localhost:11434/api/generate"
+
+    if provider == "ollama":
+        jarvis_print("Local AI Mode selected (Ollama/Gemma).")
+        ollama_url = Prompt.ask("[cyan]Enter Ollama Endpoint[/cyan]", default="http://localhost:11434/api/generate")
+        console.print("[italic white]Note: Ensure 'ollama run gemma' is active on your machine.[/italic white]")
+    elif provider == "gemini":
+        jarvis_print("Cloud AI Mode selected (Gemini API).")
+        console.print("  - Get Key: [link=https://aistudio.google.com/app/apikey]https://aistudio.google.com/app/apikey[/link]")
+        gemini_key = Prompt.ask("[cyan]Enter Gemini API Key[/cyan]", password=True)
+
+    console.print("\n[bold yellow]--- CLOUD SYNC CONFIGURATION ---[/bold yellow]")
+    console.print("  - Supabase Project: [link=https://supabase.com/dashboard/project/_/settings/api]https://supabase.com/dashboard/project/_/settings/api[/link]")
     supabase_url = Prompt.ask("[cyan]Enter Supabase URL[/cyan]", default="https://yjqwxtunbejfksyxijrs.supabase.co")
     supabase_key = Prompt.ask("[cyan]Enter Supabase Anon Key[/cyan]", password=True)
 
@@ -62,9 +74,9 @@ def run_setup():
     env_content = f"""# Project JARVIS & FRIDAY - Environment Configuration
 
 # LLM Configuration
-LLM_PROVIDER=gemini
+LLM_PROVIDER={provider}
 GEMINI_API_KEY={gemini_key}
-OLLAMA_URL=http://localhost:11434/api/generate
+OLLAMA_URL={ollama_url}
 
 # Supabase Hybrid Sync Configuration
 SUPABASE_URL={supabase_url}
