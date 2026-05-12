@@ -1,0 +1,27 @@
+# Project JARVIS & FRIDAY - Git Ignore
+
+# Sensitive Data
+.env
+
+# Local Data and Logs
+data/
+logs/
+handover.md
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
+# Project Specific
+scratch/
+test_foundation.py
+test_voice.py

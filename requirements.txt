@@ -1,0 +1,8 @@
+python-dotenv
+rich
+datetime
+jsonpickle
+pyttsx3
+keyboard
+requests
+supabase
